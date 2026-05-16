@@ -1,0 +1,11 @@
+.footer-section {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--edge-background-color);
+    color: var(--edge-color);
+}
+
+.footer-link {
+    text-decoration: none;
+    color: var(--edge-color);
+}

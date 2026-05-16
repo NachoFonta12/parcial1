@@ -1,1 +1,32 @@
-<p>who-i-am works!</p>
+<section>
+    <div class="who-am-i-title">
+        <h2>Who am I?</h2>
+        <h3>Everything you need to know about me!</h3>
+    </div>
+    <div class="user-card">
+        @if (user(); as currentUser) {
+            <img src="{{currentUser.avatarURL}}" alt="">
+            <h2> ID: {{currentUser.id}} </h2>
+            <h2> Nombre: {{currentUser.name}} </h2>
+            <h2> Usuario: {{currentUser.userName}} </h2>
+            <h2> Miembro desde: {{currentUser.createdAt | date:'dd/MM/yyyy'}} </h2>
+            <h2> Número de repositorios: {{currentUser.repositories}} </h2>
+            
+            @if ( currentUser.location == null ) {
+                <h2>Ubicación: indefinida </h2>
+            }
+            @else {
+                <h2> Ubicación: {{currentUser.location}} </h2>
+            }
+            <h2>Seguidores: {{currentUser.followers}} </h2>
+        }
+        
+
+        <button (click)="showUser()"> IMPRIMIR </button>
+    </div>
+</section>
+
+<section>
+    <h2>Flash click</h2>
+    <h3>Flash click es un juego de reflejos, donde debes clickear la pantalla tan pronto como esta cambie de color. El tiempo que tardes en clickcear se verá reflejado en los puntos que obtengas.</h3>
+</section>

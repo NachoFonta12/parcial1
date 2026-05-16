@@ -1,0 +1,20 @@
+.nav-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--edge-background-color);
+    color: var(--edge-color);
+}
+
+.nav-bar {
+    width: 50vw;
+    background-color: beige;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.nav-bar a {
+    text-decoration: none;
+}

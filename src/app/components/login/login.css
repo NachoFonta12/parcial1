@@ -1,0 +1,176 @@
+/* =========================================
+   ESTILOS REUTILIZADOS (Igual que en Registro)
+   ========================================= */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 140px);
+    padding: 2rem;
+    background-color: var(--bg-main);
+}
+
+.auth-card {
+    background-color: var(--bg-card);
+    width: 100%;
+    max-width: 480px;
+    padding: 32px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.auth-header h1 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin: 0 0 8px 0;
+}
+
+.auth-header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
+    background-color: #1e1f22;
+    color: var(--text-main);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--accent-color);
+}
+
+.hint-text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: -4px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 8px;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.auth-footer {
+    margin-top: 24px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 16px;
+}
+
+.auth-footer p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.text-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.text-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* =========================================
+   NUEVOS ESTILOS ESPECÍFICOS DEL LOGIN
+   ========================================= */
+
+/* Sección de administrador */
+.admin-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* Línea separadora con la "o" en el medio (Estilo Discord) */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 8px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.divider span {
+    padding: 0 10px;
+}
+
+/* Botón secundario para el administrador */
+.btn-secondary {
+    background-color: #4e5058; /* Gris característico de los botones secundarios en Discord */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #6d6f78;
+}

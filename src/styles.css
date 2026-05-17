@@ -1,6 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
-:root {
-    --edge-background-color: purple;
-    --edge-color: white;
+/* Importamos una fuente limpia y moderna (opcional, pero recomendada) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
+/* Variables para mantener la paleta de colores organizada */
+:root {
+    --bg-main: #1e2124;         /* Fondo principal oscuro (Discord/Steam) */
+    --bg-card: #2b2d31;         /* Fondo de las tarjetas */
+    --bg-card-hover: #313338;
+    --steam-gradient: linear-gradient(135deg, #1b2838 0%, #2a475e 100%);
+    --accent-color: #5865F2;    /* Blurple clásico de Discord */
+    --accent-hover: #4752c4;
+    --text-main: #f2f3f5;       /* Blanco apagado para no cansar la vista */
+    --text-muted: #b5bac1;      /* Gris para etiquetas y textos secundarios */
+    --border-radius-lg: 16px;
+    --border-radius-sm: 8px;
+}
+
+app-header {
+    font-family: 'Inter', sans-serif;
+}
+
+main {
+    font-family: 'Inter', sans-serif;
+}
+
+app-footer {
+    font-family: 'Inter', sans-serif;
+}
+
+html {
+    background-color: var(--bg-main);
 }

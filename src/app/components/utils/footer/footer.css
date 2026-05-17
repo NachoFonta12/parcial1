@@ -1,11 +1,41 @@
-.footer-section {
-    display: flex;
-    justify-content: space-around;
-    background-color: var(--edge-background-color);
-    color: var(--edge-color);
+/* Contenedor principal del pie de página */
+.main-footer {
+    background-color: var(--bg-card); /* Mantiene la consistencia con el nav y las tarjetas */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Borde separador sutil */
+    padding: 1.5rem 0;
+    /* Si tienes problemas para que el footer se quede abajo, 
+       asegúrate de que el contenedor principal de la página tenga min-height: 100vh 
+       y un display: flex con flex-direction: column. Luego, puedes descomentar esto: */
+    /* margin-top: auto; */
 }
 
+/* Distribución del contenido */
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px; /* Misma medida que el header para mantener simetría */
+    margin: 0 auto;
+    padding: 0 2rem;
+    color: var(--text-muted); /* Gris elegante para texto no principal */
+    font-size: 0.85rem;
+}
+
+.footer-content p {
+    margin: 0; /* Reseteamos márgenes por defecto de los párrafos */
+    letter-spacing: 0.5px;
+}
+
+/* Estilo del enlace a tu GitHub */
 .footer-link {
+    color: var(--accent-color); /* Usamos el Blurple o tu color principal */
     text-decoration: none;
-    color: var(--edge-color);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-hover);
+    /* Le damos un brillo estilo neón muy suave al pasar el cursor */
+    text-shadow: 0 0 8px rgba(88, 101, 242, 0.4); 
 }

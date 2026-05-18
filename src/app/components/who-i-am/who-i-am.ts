@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { UserService } from '../../services/user';
+import { StudentService } from '../../services/student';
 import { DatePipe } from '@angular/common';
 
 
@@ -10,17 +10,17 @@ import { DatePipe } from '@angular/common';
     styleUrl: './who-i-am.css',
 })
 export class WhoIAm {
-    private userService = inject(UserService)
-    user = this.userService.getUser()
+    private userService = inject(StudentService)
+    student = this.userService.getUser()
 
     ngOnInit(): void {
         this.userService.loadUser();
     }
 
     showUser() {
-        console.log(this.user());
-        console.log(this.user()?.location);
-        console.log(this.user()?.createdAt);
+        console.log(this.student());
+        console.log(this.student()?.location);
+        console.log(this.student()?.createdAt);
     }
 
 }

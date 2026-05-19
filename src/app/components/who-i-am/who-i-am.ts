@@ -11,10 +11,10 @@ import { DatePipe } from '@angular/common';
 })
 export class WhoIAm {
     private userService = inject(StudentService)
-    student = this.userService.getUser()
+    student = this.userService.getStudent()
 
     ngOnInit(): void {
-        this.userService.loadUser();
+        this.userService.loadStudent();
     }
 
     showUser() {

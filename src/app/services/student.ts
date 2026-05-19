@@ -17,7 +17,7 @@ export class StudentService {
     
     private fecha = '';
 
-    loadUser(): void {
+    loadStudent(): void {
         this.loading.set(true);
         this.error.set(null);
 
@@ -44,7 +44,7 @@ export class StudentService {
         })
     }
 
-    getUser(): Signal<Student | null> {
+    getStudent(): Signal<Student | null> {
 
         return this.user.asReadonly();
     }

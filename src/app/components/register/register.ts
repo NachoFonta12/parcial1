@@ -26,7 +26,7 @@ export class Register {
     async onSubmit() {
         this.loading.set(true);
         const result = await this.auth.createUserDatabase(this.email, this.name, this.birthdate, this.password);
-        if(!result.succes) {
+        if(!result.success) {
             this.errorMessage.set(result.errorMessage || 'No se pudo crear la cuenta. Verifica tus datos o intenta con otro correo.');
         }
         else {

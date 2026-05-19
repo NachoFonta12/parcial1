@@ -28,5 +28,13 @@ export class Login {
         }
         this.loading.set(false);
     }
+
+    async quickAccess(email: string, password: string) {
+        this.email = email;
+        this.password = password;
+
+        this.onSubmit();
+
+    }
     
 }

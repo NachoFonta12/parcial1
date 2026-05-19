@@ -29,6 +29,9 @@ export class AuthService {
                 email: session.user.email?? ''
             })
         }
+        else {
+            this.userSession.set(null);
+        }
     }
 
     async login(email: string, password: string): Promise<boolean> {
@@ -57,7 +60,7 @@ export class AuthService {
         this.supabase.getClient().auth.signOut();
     }
 
-    async createUserDatabase(email: string, name: string, birthdate: string, password: string): Promise<{succes: boolean, errorMessage: string | null}> {
+    async createUserDatabase(email: string, name: string, birthdate: string, password: string): Promise<{success: boolean, errorMessage: string | null}> {
         const { data, error } = await this.supabase.getClient().auth.signUp({
             email: email,
             password: password,
@@ -71,7 +74,7 @@ export class AuthService {
         
         let success: boolean;
         if (error) {
-            return {succes: false, errorMessage: error.message};
+            return {success: false, errorMessage: error.message};
         }
         else {
             const metadata = data.user?.user_metadata as UserMetadata;
@@ -82,7 +85,7 @@ export class AuthService {
                 birthdate: metadata.birthdate
             }
             this.user.set(finalUser);
-            return {succes: true, errorMessage: null}
+            return {success: true, errorMessage: null}
         }
     }
 }

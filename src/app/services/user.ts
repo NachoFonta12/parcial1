@@ -53,7 +53,7 @@ export class UserService {
         const userId = (await this.supabase.getUser()).data.user?.id;
 
         if (!userId) {
-            console.warn("No hay usuario logueado para cargar los datos");
+            console.error("No hay usuario logueado para cargar los datos");
             return;
         }
         console.log(userId);

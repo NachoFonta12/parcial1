@@ -8,8 +8,8 @@ import { userLogged } from './guards/userLogged';
 export const routes: Routes = [
     {path: 'login', component: Login},
     {path: 'register', component: Register},
-    {path: 'home', component: Home, canActivate: [userLogged]},
-    {path: '', component: Home, canActivate: [userLogged]},
-    {path: 'about-me', component: WhoIAm, canActivate: [userLogged]},
+    {path: 'home', component: Home, canActivate: [userLogged], resolve: {user: userLogged}},
+    {path: '', component: Home, canActivate: [userLogged], resolve: {user: userLogged}},
+    {path: 'about-me', component: WhoIAm, canActivate: [userLogged], resolve: {user: userLogged}},
     {path: '****', redirectTo: 'login'}
 ];

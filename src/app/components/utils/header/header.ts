@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { userLogged } from '../../../guards/userLogged';
+import { AuthService } from '../../../services/auth';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +9,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header {}
+export class Header {
+    private auth = inject(AuthService);
+    userLogged = this.auth.isAuthenticated;
+
+    
+
+    
+}

@@ -5,7 +5,7 @@
         
         <!-- Navegación -->
         <nav class="nav-bar">
-        @if (userLogged == false) {
+        @if (userLogged() == false) {
             <a routerLink="/login" routerLinkActive="active">Log in</a>
             <a routerLink="/register" routerLinkActive="active">Register</a>
 

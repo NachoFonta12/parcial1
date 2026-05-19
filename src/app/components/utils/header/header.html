@@ -5,16 +5,21 @@
         
         <!-- Navegación -->
         <nav class="nav-bar">
-            <!-- Nota el exact: true para que no se quede pegado el estilo activo -->
-            <a routerLink="/" 
-               [routerLinkActiveOptions]="{exact: true}" 
-               routerLinkActive="active">
-               Home
-            </a>
+        @if (userLogged == false) {
             <a routerLink="/login" routerLinkActive="active">Log in</a>
             <a routerLink="/register" routerLinkActive="active">Register</a>
+
+        }
+        @else {
+            <!-- Nota el exact: true para que no se quede pegado el estilo activo -->
+            <a routerLink="/" 
+                [routerLinkActiveOptions]="{exact: true}" 
+                routerLinkActive="active">
+                Home
+            </a>
             <a routerLink="/about-me" routerLinkActive="active">Who am I?</a>
-        </nav>
+        }
+    </nav>
 
         <!-- Mensaje de usuario -->
         <div class="user-greeting">Enjoy your session</div>

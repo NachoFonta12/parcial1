@@ -52,6 +52,13 @@
     transition: all 0.2s ease;
 }
 
+.nav-bar p {
+    color: rgb(2, 234, 255);
+    font-weight: 500;
+    padding: 8px 16px;
+    text-decoration:underline;
+}
+
 /* Efecto al pasar el cursor (Hover) */
 .nav-bar a:hover {
     color: var(--text-main);

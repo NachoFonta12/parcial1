@@ -2,53 +2,36 @@
 
 Una sala de juegos con chat en tiempo real, registro e inicio de sesión de usuarios y récords personales y globales.
 
-# Desarrollado por **I**gnacio **F**ontanetto
+## Desarrollado por
+
+**I**gnacio **F**ontanetto
 
 ## Tecnologías utilizadas
 
-- Angular
 - CSS
-- HTMl
+- HTML
 - TypeScript
 
 
 ## Aplicación
 
-```bash
 Link: ["Aplicación de Vercel"](programacion4div141parcial1.vercel.app)
-```
 
-ng generate --help
+## Partes del proyecto
+
+### Sprint 1
+
+El primer sprint cuenta únicamente con la navegación entre componentes, una interfaz estilizada al tono del proyecto y la información del creador con sus respectivos datos tomados desde la API de GitHub.
+
+### Sprint 2
+
+El segundo sprint implementa un sistema de guards para que solo quienes se hayan logueado puedan acceder a la aplicación. Para esto, el segundo sprint añade un sistema de creación de usuarios y de inicio de sesión, con validación de correo y contraseña. Por último, la interfaz ahora muestra datos del usuario registrado y no del dueño de la aplicación.
+
+### Sprint 3
+
+En desarrollo.
 
 
-## Building
+### Sprint 4
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+En desarrollo.

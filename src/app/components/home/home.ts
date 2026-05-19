@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { UserService } from '../../services/user';
+import { StudentService } from '../../services/student';
 
 @Component({
     selector: 'app-home',
@@ -8,7 +8,7 @@ import { UserService } from '../../services/user';
     styleUrl: './home.css',
 })
 export class Home {
-    private userService = inject(UserService)
+    private userService = inject(StudentService)
     user = this.userService.getUser()
 
     ngOnInit(): void {

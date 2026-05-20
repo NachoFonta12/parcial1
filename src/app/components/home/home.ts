@@ -11,6 +11,8 @@ export class Home {
     private userService = inject(UserService)
     user = this.userService.getUser()
 
+
+
     ngOnInit(): void {
         this.userService.loadUser();
     }

@@ -1,51 +1,80 @@
-import { Injectable, WritableSignal, inject, signal, Signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model'; 
+import { inject, Injectable, signal } from "@angular/core";
+import { SupabaseService } from "./supabase";
+import { User } from "../models/user.model";
+import { AuthError, PostgrestError } from "@supabase/supabase-js";
+import { UserMetadata } from "../models/usermetadata.model";
+import { AuthService } from "./auth";
 
-@Injectable({
-    providedIn: 'root',
-})
+
+@Injectable ({providedIn: 'root'})
 export class UserService {
-    private http: HttpClient = inject(HttpClient);
-    private apiURL: string = 'https://api.github.com/users/NachoFonta12';
+    private supabase = inject(SupabaseService);
+    errorMessage = '';
 
-    //private user: WritableSignal<User | null> = signal<User | null>(null);
-    private user = signal<User | null>(null);
+    auth = inject(AuthService);
+    user = signal<User | null>(null);
+    loading  = signal(false);
+    error = signal<AuthError | PostgrestError | null>(null);
 
-    private loading: WritableSignal<boolean> = signal<boolean>(false);
-    private error: WritableSignal<string | null> = signal<string | null>(null);
-    
-    private fecha = '';
+    async createUserDatabase(email: string, name: string, birthdate: string, password: string) {
 
-    loadUser(): void {
         this.loading.set(true);
-        this.error.set(null);
-
-        this.http.get<any>(this.apiURL).subscribe({
-            next: (data) => {
-                const finalUser: User = {
-                        id: data.id,
-                        name: data.name,
-                        userName: data.login,
-                        avatarURL: data.avatar_url,
-                        createdAt: data.created_at,
-                        repositories: data.public_repos,
-                        location: data.location,
-                        followers: data.followers
+        const { data, error } = await this.supabase.getClient().auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    name: name,
+                    birthdate: birthdate,
                     }
-                this.user.set(finalUser);
-                this.loading.set(false);
-            },
+                }
+        });
 
-            error: (error) => {
-                this.error.set("Error loading user" + error.message());
-                this.loading.set(false);
+        if (error) {
+            console.error('No se pudo crear el usuario');
+        }
+        else {
+            const metadata = data.user?.user_metadata as UserMetadata;
+            const finalUser: User = {
+                id: data.user?.id,
+                email: data.user?.email,
+                name: metadata.name,
+                birthdate: metadata.birthdate,
+                gender: metadata.gender
             }
-        })
+            this.user.set(finalUser);
+        }
     }
 
-    getUser(): Signal<User | null> {
-
-        return this.user.asReadonly();
+    getUser() {
+        return this.user;
     }
+
+    async loadUser() {
+        const userId = (await this.supabase.getUser()).data.user?.id;
+
+        if (!userId) {
+            console.error("No hay usuario logueado para cargar los datos");
+            return;
+        }
+        console.log(userId);
+
+        const {data, error} = await this.supabase.getClient().from("users").select("*").eq("id", userId).maybeSingle();
+        console.log(data);
+
+        if (error) {
+            this.error.set(error);
+        }
+        else {
+            const finalUser: User = {
+                id: data.id,
+                name: data.name,
+                email: data.email,
+                birthdate: data.birthdate,
+                gender: data.gender
+            }
+            this.user.set(finalUser);
+        }
+    }
+    
 }

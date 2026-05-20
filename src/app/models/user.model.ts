@@ -1,11 +1,7 @@
 export interface User {
-    id: number,
+    id: string | undefined,
     name: string,
-    userName: string
-    avatarURL: string,
-    createdAt: string,
-    repositories: number,
-    location: string,
-    followers: number
-
+    email: string | undefined,
+    birthdate: string,
+    gender: string
 }

@@ -6,41 +6,41 @@
         </div>
 
         <div class="user-card">
-            @if (user(); as currentUser) {
+            @if (student(); as currentStudent) {
                 <!-- Cabecera estilo Steam/Discord -->
                 <div class="card-header"></div>
                 
                 <div class="avatar-container">
-                    <img src="{{currentUser.avatarURL}}" alt="Avatar de usuario" class="avatar">
+                    <img src="{{ currentStudent.avatarURL}}" alt="Avatar de usuario" class="avatar">
                 </div>
                 
                 <div class="card-body">
-                    <h3 class="username">{{currentUser.userName}}</h3>
-                    <p class="real-name">{{currentUser.name}}</p>
+                    <h3 class="username">{{ currentStudent.userName}}</h3>
+                    <p class="real-name">{{ currentStudent.name}}</p>
                     
                     <div class="badges">
-                        <span class="badge">ID: {{currentUser.id}}</span>
+                        <span class="badge">ID: {{ currentStudent.id}}</span>
                     </div>
 
                     <div class="stats-grid">
                         <div class="stat-item">
                             <span class="stat-label">Miembro desde</span>
-                            <span class="stat-value">{{currentUser.createdAt | date:'dd/MM/yyyy'}}</span>
+                            <span class="stat-value">{{ currentStudent.createdAt | date:'dd/MM/yyyy'}}</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Repositorios</span>
-                            <span class="stat-value">{{currentUser.repositories}}</span>
+                            <span class="stat-value">{{ currentStudent.repositories}}</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Seguidores</span>
-                            <span class="stat-value">{{currentUser.followers}}</span>
+                            <span class="stat-value">{{ currentStudent.followers}}</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Ubicación</span>
-                            @if (currentUser.location == null) {
+                            @if  (currentStudent.location == null) {
                                 <span class="stat-value text-muted">Indefinida</span>
                             } @else {
-                                <span class="stat-value">{{currentUser.location}}</span>
+                                <span class="stat-value">{{ currentStudent.location}}</span>
                             }
                         </div>
                     </div>

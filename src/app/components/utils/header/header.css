@@ -32,6 +32,11 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     cursor: default;
+    text-decoration: none;
+}
+
+.brand-logo:hover {
+    cursor: pointer;
 }
 
 /* Contenedor de los enlaces */
@@ -52,6 +57,13 @@
     transition: all 0.2s ease;
 }
 
+.nav-bar p {
+    color: rgb(2, 234, 255);
+    font-weight: 500;
+    padding: 8px 16px;
+    text-decoration:underline;
+}
+
 /* Efecto al pasar el cursor (Hover) */
 .nav-bar a:hover {
     color: var(--text-main);
@@ -69,4 +81,14 @@
     font-size: 0.85rem;
     color: var(--text-muted);
     font-weight: 500;
+}
+
+.btn-logout {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
 }

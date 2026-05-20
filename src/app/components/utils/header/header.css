@@ -1,0 +1,72 @@
+/* Contenedor principal del Header */
+.main-header {
+    background-color: var(--bg-card); /* Un tono más oscuro que el fondo de la app */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Estas dos líneas hacen que el Nav se quede pegado arriba al hacer scroll */
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+}
+
+/* Alineación de los elementos */
+.nav-section {
+    display: flex;
+    justify-content: space-between; /* Separa el logo, el centro y la derecha */
+    align-items: center;
+    height: 70px;
+    max-width: 1200px; /* Evita que se estire demasiado en pantallas gigantes */
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Estilo del "Logo" */
+.brand-logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /* Un pequeño toque Steam: texto con degradado */
+    background: linear-gradient(135deg, #6b7475 0%, #3d4650 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    cursor: default;
+}
+
+/* Contenedor de los enlaces */
+.nav-bar {
+    display: flex;
+    gap: 1.5rem; /* gap es mucho mejor que width: 50vw para mantener consistencia */
+    align-items: center;
+}
+
+/* Estilo de los enlaces normales */
+.nav-bar a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease;
+}
+
+/* Efecto al pasar el cursor (Hover) */
+.nav-bar a:hover {
+    color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.05); /* Un gris muy sutil */
+}
+
+/* Estilo cuando la ruta está ACTIVA (Angular añade esta clase mágicamente) */
+.nav-bar a.active {
+    color: #ffffff;
+    background-color: var(--accent-color);
+}
+
+/* Mensaje de la derecha */
+.user-greeting {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}

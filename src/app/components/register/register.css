@@ -1,0 +1,136 @@
+/* Contenedor que centra todo en la pantalla */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 140px); /* Restamos el alto aproximado del header y footer */
+    padding: 2rem;
+    background-color: var(--bg-main);
+}
+
+/* La tarjeta central del formulario */
+.auth-card {
+    background-color: var(--bg-card);
+    width: 100%;
+    max-width: 480px; /* Un ancho cómodo para formularios */
+    padding: 32px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Encabezado del formulario */
+.auth-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.auth-header h1 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin: 0 0 8px 0;
+}
+
+.auth-header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Estructura del formulario */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Separación uniforme entre cada campo */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Separación entre el label y el input */
+}
+
+/* Estilo de las etiquetas (Labels estilo Discord) */
+.form-group label {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Estilos de los inputs */
+.form-group input {
+    background-color: #1e1f22; /* Fondo muy oscuro, clásico en apps de juegos */
+    color: var(--text-main);
+    border: 1px solid transparent; /* Borde transparente por defecto */
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    outline: none; /* Quitamos el borde azul feo por defecto del navegador */
+}
+
+/* Efecto cuando el usuario hace clic para escribir en el input */
+.form-group input:focus {
+    border-color: var(--accent-color);
+}
+
+/* Para cambiar el color del ícono del calendario en el input de fecha (solo Chrome/Edge) */
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+/* Texto de ayuda debajo del nombre de usuario */
+.hint-text {
+    font-size: 0.8rem;
+    color: #f1c40f; /* Un amarillo sutil de advertencia */
+    margin-top: -4px;
+}
+
+/* Reutilizamos el botón primario que hicimos en la sección "Who Am I" */
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 8px;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Pie del formulario (Link para ir al login) */
+.auth-footer {
+    margin-top: 24px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 16px;
+}
+
+.auth-footer p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.text-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.text-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}

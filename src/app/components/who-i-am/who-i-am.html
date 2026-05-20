@@ -1,1 +1,69 @@
-<p>who-i-am works!</p>
+<div class="about-container">
+    <section class="intro-section">
+        <div class="who-am-i-title">
+            <h2>¿Quién soy?</h2>
+            <h3>Todo lo que necesitas saber sobre mí</h3>
+        </div>
+
+        <div class="user-card">
+            @if (user(); as currentUser) {
+                <!-- Cabecera estilo Steam/Discord -->
+                <div class="card-header"></div>
+                
+                <div class="avatar-container">
+                    <img src="{{currentUser.avatarURL}}" alt="Avatar de usuario" class="avatar">
+                </div>
+                
+                <div class="card-body">
+                    <h3 class="username">{{currentUser.userName}}</h3>
+                    <p class="real-name">{{currentUser.name}}</p>
+                    
+                    <div class="badges">
+                        <span class="badge">ID: {{currentUser.id}}</span>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Miembro desde</span>
+                            <span class="stat-value">{{currentUser.createdAt | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Repositorios</span>
+                            <span class="stat-value">{{currentUser.repositories}}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Seguidores</span>
+                            <span class="stat-value">{{currentUser.followers}}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Ubicación</span>
+                            @if (currentUser.location == null) {
+                                <span class="stat-value text-muted">Indefinida</span>
+                            } @else {
+                                <span class="stat-value">{{currentUser.location}}</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            } @else {
+                <div class="loading-state">
+                    <p>Cargando perfil del jugador...</p>
+                </div>
+            }
+
+            <div class="card-footer">
+                <button class="btn-primary" (click)="showUser()">IMPRIMIR DATA</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="game-info-section">
+        <div class="game-card">
+            <div class="game-icon">⚡</div>
+            <div class="game-details">
+                <h2>Flash click</h2>
+                <p>Flash click es un juego de reflejos donde debes clickear la pantalla tan pronto como esta cambie de color. El tiempo que tardes en reaccionar se verá reflejado en los puntos que obtengas. ¡Demuestra tu velocidad!</p>
+            </div>
+        </div>
+    </section>
+</div>

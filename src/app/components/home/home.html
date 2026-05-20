@@ -1,1 +1,135 @@
-<p>home works!</p>
+<div class="home-layout">
+    <!-- COLUMNA IZQUIERDA: Contenido Principal -->
+    <main class="main-content">
+        <!-- Sección de Bienvenida y Perfil -->
+        <section class="welcome-banner">
+            <div class="welcome-text">
+                <h1>¡Bienvenido, {{user()?.name}}!</h1>
+                <p>Esta es la página principal de la sala de juegos.</p>
+            </div>
+            
+            <div class="profile-access">
+                <!-- Botón para ir al perfil -->
+                <button class="btn-profile" routerLink="/profile">
+                    <span class="icon">👤</span> Ver mi perfil y récords
+                </button>
+            </div>
+        </section>
+
+        <!-- Sección del Catálogo de Juegos -->
+        <section class="games-section">
+            <div class="section-header">
+                <h2>Nuestros Juegos</h2>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="games-grid">
+                <!-- Juego 1: Ahorcado -->
+                <div class="game-card">
+                    <div class="game-image-wrapper">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6168/6168592.png" alt="Ahorcado">
+                    </div>
+                    <div class="game-info">
+                        <h3>Ahorcado</h3>
+                        <p class="game-desc">El clásico juego de adivinar palabras. Puedes cometer hasta 5 errores por ronda. La dificultad aumenta cada tres rondas. La última palabra será especialmente difícil. ¡Mucha suerte!</p>
+                        
+                        <div class="game-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Puntuación máxima:</span>
+                                <span class="stat-value">9999</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Por el usuario:</span>
+                                <span class="stat-value text-accent">JugadorPro</span>
+                            </div>
+                        </div>
+                        <button class="btn-play btn-disabled">Jugar ahora</button>
+                    </div>
+                </div>
+
+                <!-- Juego 2: Mayor - Menor -->
+                <div class="game-card">
+                    <div class="game-image-wrapper">
+                        <img src="https://i.pinimg.com/474x/2a/d5/d1/2ad5d11f2f74555ac712d44e30f7ba3d.jpg" alt="Mayor o Menor">
+                    </div>
+                    <div class="game-info">
+                        <h3>Mayor - Menor</h3>
+                        <p class="game-desc">Un juego de puro azar... ¡si la baraja fuera ficticia! Utiliza tu memoria para contar las cartas y predecir el valor de la siguiente. ¡Mucha suerte con tus 48 predicciones!</p>
+                        
+                        <div class="game-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Puntuación máxima:</span>
+                                <span class="stat-value">48</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Por el usuario:</span>
+                                <span class="stat-value text-accent">CardMaster</span>
+                            </div>
+                        </div>
+                        <button class="btn-play btn-disabled">Jugar ahora</button>
+                    </div>
+                </div>
+
+                <!-- Juego 3: Preguntados -->
+                <div class="game-card">
+                    <div class="game-image-wrapper">
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/022/169/932/small/3d-quiz-gold-title-for-contest-show-gold-font-for-trivia-typography-design-template-on-black-tile-background-typeface-in-light-glitter-frame-creative-retro-background-for-competition-vector.jpg" alt="Preguntados">
+                    </div>
+                    <div class="game-info">
+                        <h3>Preguntados</h3>
+                        <p class="game-desc">El juego de conocimiento general por excelencia. Demuestra tu sabiduría enfrentándote a las preguntas más difíciles. Tendrás 3 vidas para responder 15 preguntas.</p>
+                        
+                        <div class="game-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Puntuación máxima:</span>
+                                <span class="stat-value">15</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Por el usuario:</span>
+                                <span class="stat-value text-accent">Einstein</span>
+                            </div>
+                        </div>
+                        <button class="btn-play btn-disabled" disabled>Jugar ahora</button>
+                    </div>
+                </div>
+
+                <!-- Juego 4: Juego Propio -->
+                <div class="game-card">
+                    <div class="game-image-wrapper">
+                        <img src="https://img.magnific.com/vector-gratis/vector-tipografia-estilo-basura-trazo-pincel-signo-interrogacion_53876-140880.jpg?semt=ais_hybrid&w=740&q=80" alt="Juego en desarrollo">
+                    </div>
+                    <div class="game-info">
+                        <h3>Próximamente</h3>
+                        <p class="game-desc">Juego en desarrollo. Estamos preparando un nuevo desafío para la plataforma. ¡Mantente atento a las próximas actualizaciones!</p>
+                        
+                        <div class="game-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Estado:</span>
+                                <span class="stat-value text-muted">En construcción</span>
+                            </div>
+                        </div>
+                        <button class="btn-play btn-disabled" disabled>Próximamente</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- COLUMNA DERECHA: Chat -->
+    <aside class="chat-sidebar">
+        <div class="chat-header">
+            <h3>Sala de Chat Global</h3>
+            <p>Recuerda respetar las reglas.</p>
+        </div>
+        
+        <div class="chat-messages">
+            <!-- Aquí irán los mensajes iterados con @for -->
+            <div class="system-message">Bienvenido al chat general.</div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" placeholder="Escribe un mensaje...">
+            <button class="btn-send">Enviar</button>
+        </div>
+    </aside>
+</div>

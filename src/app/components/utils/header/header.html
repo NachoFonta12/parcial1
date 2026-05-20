@@ -1,7 +1,7 @@
 <header class="main-header">
     <section class="nav-section">
         <!-- Logo -->
-        <div class="brand-logo">GAME ROOM</div>
+        <a class="brand-logo" routerLink="/">GAME ROOM</a>
         
         <!-- Navegación -->
         <nav class="nav-bar">
@@ -22,6 +22,11 @@
     </nav>
 
         <!-- Mensaje de usuario -->
+        @if (userLogged() == false) {
         <div class="user-greeting">Enjoy your session</div>
+        }
+        @else {
+            <button class="btn-logout" (click)="logOut()"> Cerrar sesión </button>
+        }
     </section>
 </header>

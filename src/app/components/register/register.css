@@ -84,6 +84,18 @@
     cursor: pointer;
 }
 
+.form-group select {
+    background-color: #1e1f22; /* Fondo muy oscuro, clásico en apps de juegos */
+    color: var(--text-main);
+    border: 1px solid transparent; /* Borde transparente por defecto */
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    outline: none; /* Quitamos el borde azul feo por defecto del navegador */
+}
+
 /* Texto de ayuda debajo del nombre de usuario */
 .hint-text {
     font-size: 0.8rem;

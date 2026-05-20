@@ -58,9 +58,12 @@ export class AuthService {
 
     async logout() {
         this.supabase.getClient().auth.signOut();
+        this.user.set(null);
+        this.userSession.set(null);
+        this.router.navigate(['/login']);
     }
 
-    async createUserDatabase(email: string, name: string, birthdate: string, password: string): Promise<{success: boolean, errorMessage: string | null}> {
+    async createUserDatabase(email: string, name: string, birthdate: string, password: string, sex: string): Promise<{success: boolean, errorMessage: string | null}> {
         const { data, error } = await this.supabase.getClient().auth.signUp({
             email: email,
             password: password,
@@ -68,6 +71,7 @@ export class AuthService {
                 data: {
                     name: name,
                     birthdate: birthdate,
+                    sex: sex
                 }
             }
         });
@@ -82,7 +86,8 @@ export class AuthService {
                 id: data.user?.id,
                 email: data.user?.email,
                 name: metadata.name,
-                birthdate: metadata.birthdate
+                birthdate: metadata.birthdate,
+                gender: metadata.gender
             }
             this.user.set(finalUser);
             return {success: true, errorMessage: null}

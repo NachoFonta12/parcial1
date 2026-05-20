@@ -4,7 +4,17 @@
         <!-- Sección de Bienvenida y Perfil -->
         <section class="welcome-banner">
             <div class="welcome-text">
-                <h1>¡Bienvenido, {{user()?.name}}!</h1>
+                @if (user()?.gender == 'F') {
+                    <h1>¡Bienvenida, {{user()?.name}}!</h1>
+                }
+                @else {
+                    @if ( user()?.gender == 'M' ) {
+                        <h1>¡Bienvenido, {{user()?.name}}!</h1>
+                    }
+                    @else {
+                        <h1>¡Bienvenide, {{user()?.name}}! </h1>
+                    }
+                } 
                 <p>Esta es la página principal de la sala de juegos.</p>
             </div>
             

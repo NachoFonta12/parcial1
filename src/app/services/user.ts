@@ -39,7 +39,8 @@ export class UserService {
                 id: data.user?.id,
                 email: data.user?.email,
                 name: metadata.name,
-                birthdate: metadata.birthdate
+                birthdate: metadata.birthdate,
+                gender: metadata.gender
             }
             this.user.set(finalUser);
         }
@@ -69,7 +70,8 @@ export class UserService {
                 id: data.id,
                 name: data.name,
                 email: data.email,
-                birthdate: data.birthdate
+                birthdate: data.birthdate,
+                gender: data.gender
             }
             this.user.set(finalUser);
         }

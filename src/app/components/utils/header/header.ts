@@ -13,7 +13,10 @@ export class Header {
     private auth = inject(AuthService);
     userLogged = this.auth.isAuthenticated;
 
-    
+    logOut() {
+      console.log('Cerrar sesion');
+      this.auth.logout();
+    }
 
     
 }

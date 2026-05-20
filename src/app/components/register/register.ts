@@ -21,11 +21,12 @@ export class Register {
     name = '';
     birthdate = '';
     password = '';
+    sex = '';
     errorMessage = signal('');
 
     async onSubmit() {
         this.loading.set(true);
-        const result = await this.auth.createUserDatabase(this.email, this.name, this.birthdate, this.password);
+        const result = await this.auth.createUserDatabase(this.email, this.name, this.birthdate, this.password, this.sex);
         if(!result.success) {
             this.errorMessage.set(result.errorMessage || 'No se pudo crear la cuenta. Verifica tus datos o intenta con otro correo.');
         }

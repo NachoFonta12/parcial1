@@ -5,35 +5,57 @@
             <p class="subtitle">Si es la primera vez que nos visitas, crea una cuenta para comenzar a jugar.</p>
         </div>
 
-        <form class="auth-form" (ngSubmit) = "onSubmit()">
+        <form class="auth-form" (ngSubmit) = "onSubmit()" [formGroup]="registerForm">
             <div class="form-group">
                 <label for="username">Nombre de usuario</label>
-                <input type="text" id="username" [(ngModel)] ="name" name="username" placeholder="Ricardo Plazas" required>
+                <input type="text" id="username" formControlName="username" name="username" placeholder="Ricardo Plazas" required>
                 <!-- La nota como un texto de ayuda sutil -->
                 <span class="hint-text">Nota: No escribas tu nombre real. Este será visto por todos los demás jugadores.</span>
+                
+                @if (registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+                    <p class="error-message">El nombre de usuario es un campo obligatorio.</p>
+                }
+
             </div>
 
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
-                <input type="email" id="email" [(ngModel)] ="email" name="email" placeholder="ejemplo@ejemplo.com" required>
+                <input type="email" id="email" formControlName="email" name="email" placeholder="ejemplo@ejemplo.com" required>
+                @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+                    <small>
+                        @if(registerForm.get('email')?.errors?.['required']) { <p class="error-message">El email es obligatorio</p>}
+                        @if(registerForm.get('email')?.errors?.['email']) { <p class="error-message">El formato es inválido</p> }
+                    </small>
+                }
             </div>
 
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" [(ngModel)] ="password" name="password" placeholder="********" required>
+                <input type="password" id="password" formControlName="password" name="password" placeholder="********" required>
+
+                @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+                    <small>
+                        @if(registerForm.get('password')?.errors?.['required']) { <p class="error-message">La contraseña es obligatoria</p> }
+                        @if(registerForm.get('password')?.errors?.['minlength']) { <p class="error-message">La contraseña debe tener al menos 6 caracteres</p> }
+                    </small>
+                }
             </div>
 
             <div class="form-group">
                 <label for="fechaNacimiento">Fecha de nacimiento</label>
-                <input type="date" id="fechaNacimiento" [(ngModel)] ="birthdate" name="fechaNacimiento" required>
+                <input type="date" id="fechaNacimiento" formControlName="birthdate" name="fechaNacimiento" [max]="today" required>
+
+                @if (registerForm.get('birthdate')?.invalid && registerForm.get('birthdate')?.touched) {
+                    <p class="error-message">El nombre de usuario es un campo obligatorio.</p>
+                }
             </div>
 
             <div class="form-group">
                 <label for="sex">Género</label>
-                <select class="selectores" [(ngModel)]="sex" name="sex" id="sex" required>
-                    <option value=0>Femenino</option>
-                    <option value=1>Masculino</option>
-                    <option value=2>Otro</option>
+                <select class="selectores" formControlName="sex" name="sex" id="sex" required>
+                    <option value="F">Femenino</option>
+                    <option value="M">Masculino</option>
+                    <option value="O">Otro</option>
                 </select>
             </div>
 

@@ -87,10 +87,17 @@ export class AuthService {
                 email: data.user?.email,
                 name: metadata.name,
                 birthdate: metadata.birthdate,
-                gender: metadata.gender
+                sex: metadata.sex
             }
             this.user.set(finalUser);
+            await this.logout();
             return {success: true, errorMessage: null}
         }
+    }
+
+    async getActiveSession() {
+        const {data, error} = await this.supabase.getClient().auth.getSession();
+
+        return data.session;
     }
 }

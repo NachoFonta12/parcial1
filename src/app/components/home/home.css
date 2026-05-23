@@ -272,3 +272,122 @@
 }
 
 .btn-send:hover { background-color: var(--accent-hover); }
+
+/* =========================================
+   CONTENEDOR DEL CHAT
+   ========================================= */
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    height: 400px; /* Puedes ajustar esta altura */
+    overflow-y: auto;
+    background-color: #313338; /* Gris oscuro estilo Discord */
+    border-radius: 8px 8px 0 0;
+    
+    /* Estilizar la barra de scroll (Webkit) */
+    scrollbar-width: thin;
+    scrollbar-color: #1e1f22 #313338;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+.chat-messages::-webkit-scrollbar-track {
+    background: #313338;
+}
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #1e1f22;
+    border-radius: 4px;
+}
+
+/* =========================================
+   MENSAJES
+   ========================================= */
+.system-message {
+    text-align: center;
+    color: #80848e;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin: auto 0;
+    padding: 20px;
+}
+
+.message-item {
+    padding: 4px 12px;
+    border-radius: 4px;
+    display: flex;
+    align-items: baseline;
+    word-break: break-word; /* Evita que mensajes largos rompan el diseño */
+    transition: background-color 0.1s ease;
+}
+
+/* Efecto sutil al pasar el mouse por encima del mensaje */
+.message-item:hover {
+    background-color: rgba(255, 255, 255, 0.03); 
+}
+
+.user-tag {
+    color: #5865F2; /* Azul Discord. Si prefieres Steam usa: #66c0f4 */
+    font-weight: 600;
+    margin-right: 8px;
+    white-space: nowrap; /* Evita que el nombre se divida en dos líneas */
+}
+
+.message-content {
+    color: #dbdee1;
+    line-height: 1.4;
+}
+
+/* =========================================
+   ÁREA DE INPUT
+   ========================================= */
+.chat-input-area {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    background-color: #2b2d31; /* Un poco más oscuro que los mensajes */
+    border-radius: 0 0 8px 8px;
+    align-items: center;
+}
+
+.chat-input-area input {
+    flex: 1; /* Hace que el input ocupe todo el espacio sobrante */
+    background-color: #383a40;
+    border: none;
+    color: #dbdee1;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.chat-input-area input:focus {
+    background-color: #404249; /* Se ilumina levemente al escribir */
+}
+
+.chat-input-area input::placeholder {
+    color: #80848e;
+}
+
+/* Botón de enviar (Solo por si no tenías una clase genérica) */
+.btn-send {
+    background-color: #5865F2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-send:hover {
+    background-color: #4752c4;
+}
+
+.btn-send:active {
+    transform: translateY(1px); /* Pequeño efecto de hundimiento al clickear */
+}

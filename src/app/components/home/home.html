@@ -4,11 +4,11 @@
         <!-- Sección de Bienvenida y Perfil -->
         <section class="welcome-banner">
             <div class="welcome-text">
-                @if (user()?.gender == 'F') {
+                @if (user()?.sex == 'F') {
                     <h1>¡Bienvenida, {{user()?.name}}!</h1>
                 }
                 @else {
-                    @if ( user()?.gender == 'M' ) {
+                    @if ( user()?.sex == 'M' ) {
                         <h1>¡Bienvenido, {{user()?.name}}!</h1>
                     }
                     @else {
@@ -134,12 +134,22 @@
         
         <div class="chat-messages">
             <!-- Aquí irán los mensajes iterados con @for -->
-            <div class="system-message">Bienvenido al chat general.</div>
+            @if (chat.messages().length == 0) {
+                <div class="system-message">Bienvenido al chat general.</div>
+            }
+            @else {
+                @for (message of chat.messages(); track message.id) {
+                    <div class="message-item">
+                        <span class="user-tag"> {{message.users?.name}}: </span>
+                        <span class="message-content"> {{message.content}} </span>
+                    </div>
+                }
+            }
         </div>
 
         <div class="chat-input-area">
-            <input type="text" placeholder="Escribe un mensaje...">
-            <button class="btn-send">Enviar</button>
+            <input type="text" placeholder="Escribe un mensaje..." [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
+            <button class="btn-send" (click)="sendMessage()">Enviar</button>
         </div>
     </aside>
 </div>

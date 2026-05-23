@@ -3,6 +3,7 @@ import { Login } from './components/login/login';
 import { Home } from './components/home/home';
 import { Register } from './components/register/register';
 import { WhoIAm } from './components/who-i-am/who-i-am';
+import { HigherLower } from './higher-lower/higher-lower';
 import { userGuard } from './guards/userGuard';
 import { guestGuard } from './guards/GuestGuard';
 import { userLogged } from './resolvers/userLogged';
@@ -13,5 +14,6 @@ export const routes: Routes = [
     {path: 'home', component: Home, canActivate: [userGuard], resolve: {user: userLogged}},
     {path: '', component: Home, canActivate: [userGuard], resolve: {user: userLogged}},
     {path: 'about-me', component: WhoIAm, canActivate: [userGuard], resolve: {user: userLogged}},
+    {path: 'higher-lower', component: HigherLower},
     {path: '****', redirectTo: 'login'}
 ];

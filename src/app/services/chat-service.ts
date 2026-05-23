@@ -1,6 +1,7 @@
-import { inject, Injectable, signal } from "@angular/core";
+import { inject, Injectable, PLATFORM_ID, signal } from "@angular/core";
 import { Message } from "../models/message.model";
 import { SupabaseService } from "./supabase";
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({
     providedIn: 'root',
@@ -9,6 +10,7 @@ import { SupabaseService } from "./supabase";
 export class ChatService {
     public messages = signal<Message[]>([]);
     private client = inject(SupabaseService).getClient();
+    private platformId = inject(PLATFORM_ID);
 
     constructor() {
         this.loadMessages();
@@ -27,9 +29,11 @@ export class ChatService {
     }
 
     listenMessages() {
-        this.client.channel('Sala de chat').on('postgres_changes', {event: 'INSERT', schema: 'public', table: 'messages'}, (payload) => {
-            this.loadMessages();
-        }).subscribe();
+        if (isPlatformBrowser(this.platformId)) {
+            this.client.channel('Sala de chat').on('postgres_changes', {event: 'INSERT', schema: 'public', table: 'messages'}, (payload) => {
+                this.loadMessages();
+            }).subscribe();
+        }
     }
 
     async sendMessage(name: string, text: string) {

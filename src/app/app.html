@@ -1,6 +1,11 @@
 <app-header></app-header>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<div class="layout-container">
+    <main>
+        <router-outlet></router-outlet>
+    </main>
 
+    <aside class="chat-sidebar" [class.hide-chat]="isChatHidden()">
+        <app-chat></app-chat>
+    </aside>
+</div>
 <app-footer></app-footer>

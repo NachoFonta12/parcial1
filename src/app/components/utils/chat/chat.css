@@ -1,212 +1,32 @@
 /* =========================================
-   LAYOUT PRINCIPAL (Contenido + Chat)
-   ========================================= */
-.home-layout {
-    display: grid;
-    /* La columna izquierda toma el espacio restante, la derecha mide exactamente 320px */
-    grid-template-columns: 1fr 320px; 
-    gap: 24px;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 24px;
-    min-height: calc(100vh - 140px);
-}
-
-/* =========================================
-   SECCIÓN DE BIENVENIDA Y PERFIL
-   ========================================= */
-.welcome-banner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--steam-gradient);
-    padding: 32px;
-    border-radius: var(--border-radius-lg);
-    margin-bottom: 32px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.welcome-text h1 {
-    color: #ffffff;
-    font-size: 2rem;
-    margin: 0 0 8px 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.welcome-text p {
-    color: var(--text-muted);
-    margin: 0;
-    font-size: 1rem;
-}
-
-/* Botón de perfil */
-.btn-profile {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-profile:hover {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
-/* =========================================
-   SECCIÓN DE JUEGOS (Grid)
-   ========================================= */
-.section-header {
-    margin-bottom: 24px;
-}
-
-.section-header h2 {
-    color: #ffffff;
-    font-size: 1.5rem;
-    margin: 0 0 8px 0;
-}
-
-.header-line {
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent-color) 0%, transparent 100%);
-    width: 100%;
-}
-
-.games-grid {
-    display: grid;
-    /* Crea columnas automáticamente que midan al menos 280px */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-}
-
-/* =========================================
-   TARJETAS DE JUEGO (Estilo Steam Capsule)
-   ========================================= */
-.game-card {
-    background-color: var(--bg-card);
-    border-radius: var(--border-radius-sm);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    border-color: rgba(88, 101, 242, 0.3);
-}
-
-.game-image-wrapper {
-    width: 100%;
-    height: 160px;
-    background-color: #111; /* Fondo oscuro por si la imagen es transparente */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.game-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Hace que la imagen llene el contenedor como en Steam */
-    transition: transform 0.3s ease;
-}
-
-.game-card:hover .game-image-wrapper img {
-    transform: scale(1.05); /* Pequeño zoom al pasar el cursor */
-}
-
-.game-info {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Hace que el botón "Jugar" siempre quede abajo */
-}
-
-.game-info h3 {
-    color: #ffffff;
-    margin: 0 0 8px 0;
-    font-size: 1.2rem;
-}
-
-.game-desc {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin: 0 0 16px 0;
-    /* Corta el texto si es muy largo (máx 3 líneas) */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    background-clip: text;
-    overflow: hidden;
-}
-
-.game-stats {
-    background-color: #1e1f22;
-    padding: 12px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    margin-top: auto; /* Empuja las stats y el botón hacia abajo */
-}
-
-.stat-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    margin-bottom: 4px;
-}
-
-.stat-row:last-child {
-    margin-bottom: 0;
-}
-
-.stat-label { color: var(--text-muted); }
-.stat-value { color: #ffffff; font-weight: 600; }
-.text-accent { color: var(--accent-color); }
-
-.btn-play {
-    background-color: #2ea043; /* Un verde vibrante estilo botón de "Jugar" en Steam */
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.btn-play:hover { background-color: #3fb950; }
-
-.btn-disabled {
-    background-color: #4e5058;
-    color: var(--text-muted);
-    cursor: not-allowed;
-}
-.btn-disabled:hover { background-color: #4e5058; }
-
-/* =========================================
    BARRA LATERAL (CHAT)
    ========================================= */
 .chat-sidebar {
-    background-color: var(--bg-card);
-    border-radius: var(--border-radius-lg);
+    /* --- 1. POSICIONAMIENTO Y DIMENSIONES --- */
+    position: fixed; /* Lo fijamos a la pantalla */
+    top: 80px; /* Lo bajamos para que empiece justo debajo del nav */
+    right: 0;
+    width: 30vw;
+    /* Usamos calc para que sea matemáticamente perfecto: 100% de la pantalla menos los 80px del nav */
+    height: calc(100vh - 80px); 
+    z-index: 1000;
+
+    /* --- 2. DISEÑO INTERNO --- */
+    /* Heredamos el flex del primer bloque para que los mensajes y el input se acomoden bien */
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 140px); /* Altura fija para que el chat haga scroll interno */
-    position: sticky;
-    top: 90px; /* Se queda fijo al hacer scroll en la página */
-    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    /* --- 3. ESTÉTICA (Colores, bordes y sombras) --- */
+    /* Usamos tu variable, y si falla, cae en el color de Discord por defecto */
+    background-color: var(--bg-card, #2b2d31); 
+    /* Redondeamos solo la esquina superior izquierda */
+    border-radius: var(--border-radius-lg, 8px) 0 0 0; 
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.5);
+
+    /* --- 4. ANIMACIÓN DE APERTURA / CIERRE --- */
+    transition: transform 0.3s ease-in-out; 
+    transform: translateX(0); /* Estado abierto por defecto */
 }
 
 .chat-header {
@@ -340,6 +160,13 @@
     line-height: 1.4;
 }
 
+.message-date {
+    color: #949ba4; /* Un gris tenue */
+    font-size: 0.75rem; /* Letra más pequeña */
+    margin-left: 8px; /* Separación del nombre de usuario */
+    font-weight: 400;
+}
+
 .display {
     transform: translateX(-100%); 
 }
@@ -411,8 +238,9 @@
     position: fixed; /* Lo fijamos a la pantalla */
     top: 0;
     right: 0; /* Pegado a la derecha */
-    width: 500px; /* Hazlo más ancho si quieres! */
-    height: 100vh; /* Ocupa todo el alto de la pantalla */
+    width: 30vw; /* Hazlo más ancho si quieres! */
+    height: 92vh; /* Ocupa todo el alto de la pantalla */
+    margin-top: 80px; /* Ajusta este número al alto real de tu app-header */
     background-color: #2b2d31; /* Fondo oscuro estilo Discord */
     box-shadow: -4px 0 15px rgba(0, 0, 0, 0.5); /* Sombra suave para darle profundidad */
     z-index: 1000;

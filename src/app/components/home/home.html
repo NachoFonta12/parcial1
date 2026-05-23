@@ -4,11 +4,11 @@
         <!-- Sección de Bienvenida y Perfil -->
         <section class="welcome-banner">
             <div class="welcome-text">
-                @if (user()?.gender == 'F') {
+                @if (user()?.sex == 'F') {
                     <h1>¡Bienvenida, {{user()?.name}}!</h1>
                 }
                 @else {
-                    @if ( user()?.gender == 'M' ) {
+                    @if ( user()?.sex == 'M' ) {
                         <h1>¡Bienvenido, {{user()?.name}}!</h1>
                     }
                     @else {

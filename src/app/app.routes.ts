@@ -14,6 +14,6 @@ export const routes: Routes = [
     {path: 'home', component: Home, canActivate: [userGuard], resolve: {user: userLogged}},
     {path: '', component: Home, canActivate: [userGuard], resolve: {user: userLogged}},
     {path: 'about-me', component: WhoIAm, canActivate: [userGuard], resolve: {user: userLogged}},
-    {path: 'higher-lower', component: HigherLower},
+    {path: 'higher-lower', component: HigherLower, canActivate: [userGuard]},
     {path: '****', redirectTo: 'login'}
 ];

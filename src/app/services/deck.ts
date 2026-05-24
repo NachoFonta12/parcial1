@@ -1,5 +1,6 @@
-import { Injectable, signal } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { Card } from "../models/card.model";
+import { GameService } from "./game";
 
 @Injectable({
     providedIn: 'root',
@@ -8,13 +9,16 @@ export class DeckService {
     private imageURL = 'https://raw.githubusercontent.com/mcmd/playingcards.io-spanish.playing.cards/refs/heads/master/img/';
     private palos = ['espadas', 'bastos', 'copas', 'oros'];
     private values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    private gameService = inject(GameService);
 
+    gameState = signal<'start' | 'playing' | 'gameover'>('start');
     playing = signal<boolean>(false);
     deck = signal<Card[]>([]);
     discardedCards = signal<Card[]>([]);
     currentCard = signal<Card|undefined>(undefined);
     nextCard = signal<Card|undefined>(undefined);
     score = signal<number>(0);
+
 
     constructor() {
         console.log(this.deck());
@@ -52,20 +56,15 @@ export class DeckService {
     }
 
     discardCard(card: Card) {
-        console.log(card.value, 'de', card.palo);
         this.discardedCards().push(card);
         this.discardedCards().forEach(card => {
-            console.log(card.value, 'de', card.palo);
         })
     }
 
     shuffleDeck() {
         for (let i = this.deck().length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-
-            console.log('Antes de mezclar', this.deck()[i], this.deck()[j]);
             [this.deck()[i], this.deck()[j]] = [this.deck()[j], this.deck()[i]];
-            console.log('Despues de mezclar', this.deck()[i], this.deck()[j]);
         }
     }
 
@@ -144,6 +143,7 @@ export class DeckService {
 
     startGame() {
         this.playing.set(true);
+        this.gameState.set("playing");
         this.loadDeck();
         this.shuffleDeck();
         this.currentCard.set(this.drawOneCard());
@@ -158,13 +158,17 @@ export class DeckService {
         }
     }
 
-    endGame() {
-        this.playing.set(false);
+    async endGame() {
+        await this.gameService.insertResult(1, this.score());
+        this.discardedCards.set([]);
+        await this.gameService.getHighScores(1);
+        this.gameState.set('gameover');
+        console.log(this.gameService.leaderboard());
     }
 
     restartGame() {
         this.score.set(0);
-        this.startGame();
+        this.gameState.set('start');
     }
 
     addPoint() {

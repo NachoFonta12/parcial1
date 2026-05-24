@@ -1,5 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { DeckService } from '../../services/deck';
+import { UserService } from '../../services/user';
+import { GameService } from '../../services/game';
 @Component({
     selector: 'app-higher-lower',
     imports: [],
@@ -7,8 +9,10 @@ import { DeckService } from '../../services/deck';
     styleUrl: './higher-lower.css',
 })
 
-export class HigherLower {
+export class HigherLower implements OnDestroy {
     deckService = inject(DeckService);
+    gameService = inject(GameService);
+
     deck = this.deckService.deck;
 
     currentCard = this.deckService.currentCard;
@@ -16,8 +20,23 @@ export class HigherLower {
     backCard = "https://raw.githubusercontent.com/mcmd/playingcards.io-spanish.playing.cards/refs/heads/master/img/reverso.png";
     playing = this.deckService.playing;
     discardedCards = this.deckService.discardedCards;
+    gameState = this.deckService.gameState;
+    user = inject(UserService).getUser();
+    score = this.deckService.score;
+    leaderboard = inject(GameService).leaderboard;
 
     startGame() {
         this.deckService.startGame();
+
+        console.log(this.user()?.name);
+    }
+
+    ngOnDestroy() {
+        // Limpiamos todo el estado para la próxima vez que entre
+        this.deckService.restartGame(); 
+        
+        // Opcional: También puedes vaciar el leaderboard para que 
+        // no quede el de la partida anterior
+        this.gameService.leaderboard.set([]);
     }
 }

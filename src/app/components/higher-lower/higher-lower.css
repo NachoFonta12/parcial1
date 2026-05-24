@@ -177,3 +177,77 @@
 .btn-main-action:hover {
     background-color: #4752c4;
 }
+
+.game-over-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+}
+
+.results-card {
+    background-color: #2b2d31;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.results-card h2 {
+    color: #dbdee1;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.final-score p {
+    color: #949ba4;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.final-score h3 {
+    color: #5865F2; /* Azul brillante para destacar */
+    font-size: 4rem;
+    margin: 0;
+    line-height: 1;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #3f4147;
+    margin: 30px 0;
+}
+
+.leaderboard h4 {
+    color: #dbdee1;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.top-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+    text-align: left;
+}
+
+.top-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background-color: #1e1f22;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Colores para el podio 1ro, 2do y 3ro */
+.top-list li:nth-child(1) { border-left: 4px solid #ffd700; } /* Oro */
+.top-list li:nth-child(2) { border-left: 4px solid #c0c0c0; } /* Plata */
+.top-list li:nth-child(3) { border-left: 4px solid #cd7f32; } /* Bronce */
+
+.player-name { color: #dbdee1; }
+.player-score { color: #23a559; } /* Verde para los puntos */

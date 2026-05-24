@@ -1,0 +1,221 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.hangman-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    color: #dbdee1;
+    font-family: 'Inter', sans-serif;
+    min-height: calc(100vh - 80px);
+}
+
+.game-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+/* --- DIBUJO DEL AHORCADO (CSS ART) --- */
+.hangman-drawing {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    margin: 0 auto 40px auto;
+}
+
+/* Partes de la Horca (Gallows) */
+.gallows-base {
+    position: absolute; bottom: 0; left: 0;
+    width: 100px; height: 8px; background-color: #949ba4;
+    border-radius: 4px;
+}
+.gallows-pole {
+    position: absolute; bottom: 0; left: 46px;
+    width: 8px; height: 250px; background-color: #949ba4;
+    border-radius: 4px;
+}
+.gallows-top {
+    position: absolute; top: 0; left: 46px;
+    width: 100px; height: 8px; background-color: #949ba4;
+    border-radius: 4px;
+}
+.gallows-rope {
+    position: absolute; top: 8px; left: 138px;
+    width: 4px; height: 30px; background-color: #dbdee1;
+}
+
+/* Partes del Muñeco (Stickman) */
+.man-head {
+    position: absolute; top: 38px; left: 120px;
+    width: 40px; height: 40px;
+    border: 5px solid #ffffff;
+    border-radius: 50%; /* Lo hace un círculo perfecto */
+    box-sizing: border-box;
+}
+.man-body {
+    position: absolute; top: 78px; left: 138px;
+    width: 5px; height: 60px; background-color: #ffffff;
+    border-radius: 4px;
+}
+.man-arm-left {
+    position: absolute; top: 90px; left: 98px;
+    width: 40px; height: 5px; background-color: #ffffff;
+    border-radius: 4px;
+    transform: rotate(30deg); /* Inclina el brazo */
+    transform-origin: right center; /* Ancla la rotación al hombro */
+}
+.man-arm-right {
+    position: absolute; top: 90px; left: 140px;
+    width: 40px; height: 5px; background-color: #ffffff;
+    border-radius: 4px;
+    transform: rotate(-30deg);
+    transform-origin: left center;
+}
+.man-leg-left {
+    position: absolute; top: 135px; left: 103px;
+    width: 40px; height: 5px; background-color: #ffffff;
+    border-radius: 4px;
+    transform: rotate(120deg);
+    transform-origin: right center; /* Ancla la rotación a la cadera */
+}
+.man-leg-right {
+    position: absolute; top: 135px; left: 140px;
+    width: 40px; height: 5px; background-color: #ffffff;
+    border-radius: 4px;
+    transform: rotate(60deg);
+    transform-origin: left center;
+}
+
+/* --- PALABRA OCULTA --- */
+.secret-word {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.letter-box {
+    width: 40px;
+    height: 50px;
+    border-bottom: 4px solid #dbdee1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+/* Si el espacio está vacío (ej. no la adivinó), mantiene el ancho pero no muestra nada */
+.letter-box:empty {
+    border-bottom: 4px solid #949ba4;
+}
+
+/* --- TECLADO --- */
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.key-btn {
+    width: 45px;
+    height: 50px;
+    background-color: #4e5058;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    text-transform: uppercase;
+}
+
+.key-btn:hover {
+    background-color: #5865F2;
+    transform: translateY(-2px);
+}
+
+.key-btn:active {
+    transform: translateY(0);
+}
+
+/* Podrías agregar una clase dinámica en Angular [class.disabled-key]="letraUsada" para las letras ya tocadas */
+.key-btn.disabled-key {
+    background-color: #2b2d31;
+    color: #80848e;
+    cursor: not-allowed;
+    pointer-events: none; /* Evita clics extra */
+}
+
+/* --- BOTONES Y PANTALLA FINAL --- */
+.btn-main {
+    padding: 16px 32px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #5865F2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-main:hover {
+    background-color: #4752c4;
+}
+
+.game-over-card {
+    background-color: #2b2d31;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.top-list {
+    /* 1. Hace que la lista "abrace" el contenido, en lugar de ocupar el 100% del ancho */
+    display: inline-block; 
+    
+    /* 2. Alinea los nombres y los números perfectamente a la izquierda */
+    text-align: left; 
+    
+    /* 3. Asegura que los números no se salgan del borde */
+    padding-left: 20px; 
+}
+
+.win-text {
+    font-size: 2rem;
+    color: #23a559; /* Verde victoria. Cámbialo a #ed4245 si pierde */
+    margin-bottom: 20px;
+}
+
+.result-text {
+    font-size: 1.2rem;
+    color: #949ba4;
+}
+
+.highlight-word {
+    font-size: 3rem;
+    color: #ffffff;
+    font-weight: bold;
+    margin: 10px 0 30px 0;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}

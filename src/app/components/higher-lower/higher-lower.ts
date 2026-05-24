@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { DeckService } from '../../services/deck';
 import { UserService } from '../../services/user';
-import { GameService } from '../../services/game';
+
 @Component({
     selector: 'app-higher-lower',
     imports: [],
@@ -11,8 +11,6 @@ import { GameService } from '../../services/game';
 
 export class HigherLower implements OnDestroy {
     deckService = inject(DeckService);
-    gameService = inject(GameService);
-
     deck = this.deckService.deck;
 
     currentCard = this.deckService.currentCard;
@@ -23,7 +21,7 @@ export class HigherLower implements OnDestroy {
     gameState = this.deckService.gameState;
     user = inject(UserService).getUser();
     score = this.deckService.score;
-    leaderboard = inject(GameService).leaderboard;
+    leaderboard = this.deckService.leaderboard;
 
     startGame() {
         this.deckService.startGame();
@@ -37,6 +35,6 @@ export class HigherLower implements OnDestroy {
         
         // Opcional: También puedes vaciar el leaderboard para que 
         // no quede el de la partida anterior
-        this.gameService.leaderboard.set([]);
+        this.leaderboard.set([]);
     }
 }

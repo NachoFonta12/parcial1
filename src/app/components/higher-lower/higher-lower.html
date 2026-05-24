@@ -101,7 +101,7 @@
             <div class="leaderboard">
                 <h4>🏆 Top 3 Mejores Jugadores</h4>
                 <!-- Descarte (Izquierda) -->
-                @if (leaderboard().length == 0) {
+                @if (leaderboard()?.length == 0) {
                     <p class="loading-text">Cargando puntajes...</p>
                 } @else {
                     <ol class="top-list">

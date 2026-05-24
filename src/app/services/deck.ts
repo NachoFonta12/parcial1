@@ -18,6 +18,8 @@ export class DeckService {
     currentCard = signal<Card|undefined>(undefined);
     nextCard = signal<Card|undefined>(undefined);
     score = signal<number>(0);
+    leaderboard = signal<{ username: string; score: number }[] | undefined>([])
+
 
 
     constructor() {
@@ -161,9 +163,8 @@ export class DeckService {
     async endGame() {
         await this.gameService.insertResult(1, this.score());
         this.discardedCards.set([]);
-        await this.gameService.getHighScores(1);
+        this.leaderboard.set(await this.gameService.getHighScores(1));
         this.gameState.set('gameover');
-        console.log(this.gameService.leaderboard());
     }
 
     restartGame() {

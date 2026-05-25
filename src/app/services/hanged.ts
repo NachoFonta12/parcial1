@@ -41,7 +41,12 @@ export class HangedService {
         "HIPOPOTAMO",
         "ALFOMBRA",
         "TERMOMETRO",
-        "COCODRILO"];
+        "COCODRILO",
+        "AGONIA",
+        "ETCETERA",
+        "RISUEÑO",
+        "HURACAN",
+        "MIRIAPODO"];
     
     private startTime = 0;
     private endTime = 0;

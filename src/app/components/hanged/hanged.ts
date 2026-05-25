@@ -32,4 +32,8 @@ export class Hanged {
     formatTime(time: number): string {
         return this.hangedService.formatTime(time);
     }
+
+    ngOnDestroy() {
+        this.hangedService.restartGame(); 
+    }
 }

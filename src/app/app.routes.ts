@@ -8,6 +8,7 @@ import { userGuard } from './guards/userGuard';
 import { guestGuard } from './guards/GuestGuard';
 import { userLogged } from './resolvers/userLogged';
 import { Hanged } from './components/hanged/hanged';
+import { Quiz } from './components/quiz/quiz';
 
 export const routes: Routes = [
     {path: 'login', component: Login, canActivate: [guestGuard]},
@@ -17,5 +18,6 @@ export const routes: Routes = [
     {path: 'about-me', component: WhoIAm, canActivate: [userGuard], resolve: {user: userLogged}},
     {path: 'higher-lower', component: HigherLower, canActivate: [userGuard]},
     {path: 'hanged', component: Hanged, canActivate: [userGuard]},
+    {path: 'quiz', component: Quiz},
     {path: '****', redirectTo: 'login'}
 ];

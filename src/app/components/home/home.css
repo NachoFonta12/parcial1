@@ -4,7 +4,7 @@
 .home-layout {
     display: grid;
     /* La columna izquierda toma el espacio restante, la derecha mide exactamente 320px */
-    grid-template-columns: 1fr 320px; 
+    /*grid-template-columns: 1fr 320px; */
     gap: 24px;
     max-width: 1400px;
     margin: 0 auto;
@@ -81,8 +81,7 @@
 
 .games-grid {
     display: grid;
-    /* Crea columnas automáticamente que midan al menos 280px */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(17vw, 1fr));
     gap: 24px;
 }
 
@@ -107,7 +106,7 @@
 
 .game-image-wrapper {
     width: 100%;
-    height: 160px;
+    height: 53vh;
     background-color: #111; /* Fondo oscuro por si la imagen es transparente */
     display: flex;
     align-items: center;
@@ -118,7 +117,7 @@
 .game-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Hace que la imagen llene el contenedor como en Steam */
+    object-fit: fill; /* Hace que la imagen llene el contenedor como en Steam */
     transition: transform 0.3s ease;
 }
 
@@ -144,12 +143,6 @@
     font-size: 0.85rem;
     line-height: 1.5;
     margin: 0 0 16px 0;
-    /* Corta el texto si es muy largo (máx 3 líneas) */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    background-clip: text;
-    overflow: hidden;
 }
 
 .game-stats {

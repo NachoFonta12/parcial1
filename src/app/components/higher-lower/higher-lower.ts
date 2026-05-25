@@ -16,7 +16,6 @@ export class HigherLower implements OnDestroy {
     currentCard = this.deckService.currentCard;
     nextCard = this.deckService.nextCard;
     backCard = "https://raw.githubusercontent.com/mcmd/playingcards.io-spanish.playing.cards/refs/heads/master/img/reverso.png";
-    playing = this.deckService.playing;
     discardedCards = this.deckService.discardedCards;
     gameState = this.deckService.gameState;
     user = inject(UserService).getUser();
@@ -30,11 +29,6 @@ export class HigherLower implements OnDestroy {
     }
 
     ngOnDestroy() {
-        // Limpiamos todo el estado para la próxima vez que entre
         this.deckService.restartGame(); 
-        
-        // Opcional: También puedes vaciar el leaderboard para que 
-        // no quede el de la partida anterior
-        this.leaderboard.set([]);
     }
 }

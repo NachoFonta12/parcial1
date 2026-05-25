@@ -1,0 +1,65 @@
+<div class="quiz-container">
+    <h1 class="game-title">PREGUNTADOS</h1>
+
+    @if (gameState() == 'start') {
+        <div class="center-screen">
+            <button class="btn-main" (click)="quizService.startGame()">EMPEZAR JUEGO</button>
+        </div>
+    }
+
+    @if (gameState() == 'playing') {
+        @let currentQuestion = questions()[round() - 1];
+        
+        <div class="playing-screen">
+            <div class="round-indicator">Pregunta {{ round() }} de {{ questions().length }}</div>
+            
+            <div class="question-card">
+                <p [innerHTML]="currentQuestion.question"></p>
+            </div>
+
+            <div class="answers-grid">
+                <button class="answer-btn" (click)="quizService.playRound(currentQuestion.allAnswers[0])" [innerHTML]="currentQuestion.allAnswers[0]"></button>
+
+                <button class="answer-btn" (click)="quizService.playRound(currentQuestion.allAnswers[1])" [innerHTML]="currentQuestion.allAnswers[1]"></button>
+                
+                <button class="answer-btn" (click)="quizService.playRound(currentQuestion.allAnswers[2])" [innerHTML]="currentQuestion.allAnswers[2]"></button>
+                
+                <button class="answer-btn" (click)="quizService.playRound(currentQuestion.allAnswers[3])" [innerHTML]="currentQuestion.allAnswers[3]"></button>
+            </div>
+        </div>
+    }
+
+    @if (gameState() == 'gameover') {
+        <div class="center-screen">
+            <div class="game-over-card">
+                <h3 class="win-text">¡TRIVIA TERMINADA!</h3>
+                
+                <div class="final-score">
+                    <p>TU PUNTAJE FINAL:</p>
+                    <h3 class="time-highlight">{{ score() }}</h3>
+                </div>
+
+                <hr class="divider">
+
+                <div class="leaderboard">
+                    <h4>🏆 Mejores Jugadores</h4>
+                    @if (leaderboard()?.length == 0) {
+                        <p class="loading-text">Cargando puntajes...</p>
+                    } @else {
+                        <ol class="top-list">
+                            @for (player of leaderboard(); track $index) {
+                                <li>
+                                    <span class="player-name"> {{ player.username }} </span>
+                                    <p> - </p>
+                                    <span class="player-score"> {{ player.score }} pts</span> 
+                                </li>
+                            }
+                        </ol>
+                    }
+                </div>
+
+                <button class="btn-main" (click)="quizService.restartGame()">VOLVER A JUGAR</button>
+            </div>
+        </div>
+    }
+</div>

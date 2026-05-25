@@ -146,3 +146,32 @@
     color: var(--accent-hover);
     text-decoration: underline;
 }
+
+
+/* =========================================
+   MENSAJE DE ERROR
+   ========================================= */
+.error-message {
+    background-color: rgba(237, 66, 69, 0.1); /* Rojo característico de Discord al 10% */
+    color: #ed4245; /* Texto rojo intenso */
+    border: 1px solid rgba(237, 66, 69, 0.4);
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 12px; /* Separación con el botón de Iniciar Sesión */
+    margin-bottom: 0;
+    
+    /* Dispara la animación de sacudida cuando aparece en el DOM */
+    animation: shakeError 0.4s ease-in-out;
+}
+
+/* Animación de sacudida horizontal */
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}

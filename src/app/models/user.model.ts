@@ -3,5 +3,5 @@ export interface User {
     name: string,
     email: string | undefined,
     birthdate: string,
-    gender: string
+    sex: string
 }

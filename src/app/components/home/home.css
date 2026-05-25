@@ -144,11 +144,7 @@
     font-size: 0.85rem;
     line-height: 1.5;
     margin: 0 0 16px 0;
-    /* Corta el texto si es muy largo (máx 3 líneas) */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    background-clip: text;
     overflow: hidden;
 }
 

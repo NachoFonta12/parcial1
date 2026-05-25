@@ -30,3 +30,8 @@ app-footer {
 html {
     background-color: var(--bg-main);
 }
+
+app-chat {
+    font-family: 'Inter', sans-serif;
+
+}

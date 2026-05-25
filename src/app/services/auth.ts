@@ -4,6 +4,7 @@ import { SupabaseService } from "./supabase";
 import {UserSession} from "../models/usersession.model";
 import { User } from "../models/user.model";
 import { UserMetadata } from "../models/usermetadata.model";
+import { ChatUiService } from "./chat-ui";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -14,6 +15,7 @@ export class AuthService {
     user = signal<User | null>(null);
     userSession = signal<UserSession | null>(null);
     isAuthenticated = computed(() => this.userSession() !== null);
+    private chatUi = inject(ChatUiService);
 
     userEmail = computed(() => this.userSession()?.email ?? 'Invitado');
 
@@ -60,6 +62,7 @@ export class AuthService {
         this.supabase.getClient().auth.signOut();
         this.user.set(null);
         this.userSession.set(null);
+        this.chatUi.isChatHidden.set(true);
         this.router.navigate(['/login']);
     }
 

@@ -126,20 +126,37 @@
     </main>
 
     <!-- COLUMNA DERECHA: Chat -->
-    <aside class="chat-sidebar">
+     <!--
+    <button class="btn-toggle-chat" class="btn-chat" (click)="toggleChat()">
+    <i class="fa-solid fa-message"></i> Chat
+</button>
+    <aside class="chat-sidebar" [class.hide-chat]="isChatHidden()">
         <div class="chat-header">
             <h3>Sala de Chat Global</h3>
             <p>Recuerda respetar las reglas.</p>
         </div>
         
-        <div class="chat-messages">
+        <div class="chat-messages">-->
             <!-- Aquí irán los mensajes iterados con @for -->
-            <div class="system-message">Bienvenido al chat general.</div>
+             <!--
+            @if (chat.messages().length == 0) {
+                <div class="system-message">Bienvenido al chat general.</div>
+            }
+            @else {
+                @for (message of chat.messages(); track message.id) {
+                    <div class="message-item">
+                        <span class="user-tag"> {{message.users?.name}}: </span>
+                        <span class="message-content"> {{message.content}} </span>
+                        <span class="message-date"> {{message.created_at}} </span>
+                    </div>
+                }
+            }
         </div>
 
         <div class="chat-input-area">
-            <input type="text" placeholder="Escribe un mensaje...">
-            <button class="btn-send">Enviar</button>
+            <input type="text" placeholder="Escribe un mensaje..." [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
+            <button class="btn-send" (click)="sendMessage()">Enviar</button>
         </div>
     </aside>
+-->
 </div>

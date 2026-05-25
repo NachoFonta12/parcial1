@@ -1,0 +1,100 @@
+<div class="hangman-container">
+    <h2 class="game-title">AHORCADO</h2>
+
+    @if (gameState() == 'start')  {
+        <div class="center-screen">
+            <button class="btn-main" (click)="hangedService.startGame()">EMPEZAR A JUGAR</button>
+        </div>
+    }
+
+    @if (gameState() == 'playing') {
+        <div class="game-board">
+            
+            <div class="hangman-drawing">
+                <div class="gallows-base"></div>
+                <div class="gallows-pole"></div>
+                <div class="gallows-top"></div>
+                <div class="gallows-rope"></div>
+
+                @if (mistakes() >= 1) { <div class="man-head"></div> }
+                @if (mistakes() >= 2) { <div class="man-body"></div> }
+                @if (mistakes() >= 3) { <div class="man-arm-left"></div> }
+                @if (mistakes() >= 4) { <div class="man-arm-right"></div> }
+                @if (mistakes() >= 5) { <div class="man-leg-left"></div> }
+                @if (mistakes() >= 6) { <div class="man-leg-right"></div> }
+            </div>
+
+            <div class="secret-word">
+                @for (letter of hiddenSecretWord(); track $index) {
+                    <div class="letter-box"> {{letter}} </div>
+                }
+            </div>
+            
+            <div class="keyboard">
+                @for (letter of alphabet(); track letter) {
+                    <button 
+                        class="key-btn" 
+                        [class.disabled-key]="guessedLetters().includes(letter)"
+                        [disabled]="guessedLetters().includes(letter)"
+                        (click)="tryLetter(letter)"> 
+                        {{letter}} 
+                    </button>
+                }
+            </div>
+
+        </div>
+    }
+
+@if (gameState() == 'gameover') {
+    <div class="center-screen">
+        <div class="game-over-card">
+            
+            @if (victory()) {
+                <h3 class="win-text">¡VICTORIA!</h3>
+                <p class="result-text">Descubrir la palabra te tomó:</p>
+                <h3 class="time-highlight">{{time()}}</h3>
+            } 
+            @else {
+                <h3 class="lose-text">¡DERROTA!</h3>
+                
+                <div class="hangman-drawing mini-drawing">
+                    <div class="gallows-base"></div>
+                    <div class="gallows-pole"></div>
+                    <div class="gallows-top"></div>
+                    <div class="gallows-rope"></div>
+                    <div class="man-head"></div>
+                    <div class="man-body"></div>
+                    <div class="man-arm-left"></div>
+                    <div class="man-arm-right"></div>
+                    <div class="man-leg-left"></div>
+                    <div class="man-leg-right"></div>
+                </div>
+            }
+
+            <p class="result-text">La palabra era:</p>
+            <p class="highlight-word">{{chosenWord()}}</p>
+
+            <hr class="divider">
+
+            <div class="leaderboard">
+                <h4>🏆 Top 3 Mejores Tiempos</h4>
+                
+                @if (leaderboard()?.length === 0) {
+                    <p class="loading-text">Cargando puntajes...</p>
+                } @else {
+                    <ol class="top-list">
+                        @for (player of leaderboard(); track $index) {
+                            <li>
+                                <span class="player-name">{{ player.username }} - </span>
+                                <span class="player-score">{{ formatTime(player.score) }} seg</span> 
+                            </li>
+                        }
+                    </ol>
+                }
+            </div>
+
+            <button class="btn-main" (click)="hangedService.restartGame()">JUGAR OTRA VEZ</button>
+        </div>
+    </div>
+}
+</div>

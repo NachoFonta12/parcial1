@@ -1,0 +1,122 @@
+<div class="game-container">
+    
+    <!-- Controles de Desarrollo (Puedes ocultarlos después)
+    <div class="dev-controls">
+        <button (click)="deckService.drawOneCard()">1 carta</button>
+        <button (click)="deckService.loadDeck()">Cargar</button>
+        <button (click)="deckService.shuffleDeck()">Mezclar</button>
+        <button (click)="deckService.showDeck()">Mostrar</button>
+    </div> -->
+
+@if (gameState() === 'start') {
+    <div class="start-screen">
+        <h2>Mayor o Menor</h2>
+        <button class="btn-main-action" (click)="startGame()">COMENZAR JUEGO</button>
+    </div>
+}
+
+@if (gameState() === 'playing') {
+    <div class="game-board">
+        
+        <!-- ESQUELETO DEL CONTADOR (Modo Fácil) -->
+        <!-- Puedes envolver esto en un @if (isEasyMode()) más adelante -->
+        <aside class="card-tracker">
+            <h3>Cartas Restantes</h3>
+            <div class="tracker-grid">
+                <div class="tracker-item"><span>12 (Reyes)</span> <span class="badge">4</span></div>
+                <div class="tracker-item"><span>11 (Caballos)</span> <span class="badge">4</span></div>
+                <div class="tracker-item"><span>10 (Sotas)</span> <span class="badge">4</span></div>
+                <div class="tracker-item"><span>7</span> <span class="badge">4</span></div>
+                <div class="tracker-item"><span>6</span> <span class="badge">4</span></div>
+                <div class="tracker-item"><span>5</span> <span class="badge">4</span></div>
+                <div class="tracker-item"><span>4</span> <span class="badge">4</span></div>
+                <div class="tracker-item"><span>3</span> <span class="badge">4</span></div>
+                <div class="tracker-item"><span>2</span> <span class="badge">4</span></div>
+                <div class="tracker-item"><span>1 (Ases)</span> <span class="badge">4</span></div>
+            </div>
+        </aside>
+
+        <!-- ZONA DE CARTAS -->
+        <div class="cards-display">
+            
+            <!-- Descarte (Izquierda) -->
+            <div class="card-slot discarded">
+                <p class="slot-label">Anterior</p>
+                @if (discardedCards().length != 0) {
+                    <img [src]="discardedCards().at(-1)?.url" class="playing-card" alt="Carta anterior">
+                    <p class="card-name">{{ discardedCards().at(-1)?.value }} de {{ discardedCards().at(-1)?.palo }}</p>
+                } @else {
+                    <div class="playing-card empty-card"></div>
+                    <p class="card-name">-</p>
+                }
+            </div>
+
+            <!-- Carta Actual (Centro) -->
+            <div class="card-slot current">
+                <p class="slot-label highlight">En Mesa</p>
+                <img [src]="currentCard()?.url" class="playing-card active-card" alt="Carta actual">
+                <p class="card-name">{{currentCard()?.value}} de {{currentCard()?.palo}}</p>
+            </div>
+
+            <!-- Siguiente Carta (Derecha) -->
+            <div class="card-slot next">
+                <p class="slot-label">Siguiente</p>
+                @if (nextCard()) {
+                    <img [src]="nextCard()?.url" class="playing-card revealed" alt="Siguiente carta">
+                    <p class="card-name">{{nextCard()?.value}} de {{nextCard()?.palo}}</p>
+                } @else {
+                    <img [src]="backCard" class="playing-card face-down" alt="Dorso de carta">
+                    <p class="card-name">¿?</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTONES DE ACCIÓN -->
+    <div class="action-buttons">
+        <button class="btn-guess btn-menor" (click)="deckService.playRound(0)">
+            <i class="fa-solid fa-arrow-down"></i> Menor
+        </button>
+        <button class="btn-guess btn-igual" (click)="deckService.playRound(1)">
+            <i class="fa-solid fa-equals"></i> Igual
+        </button>
+        <button class="btn-guess btn-mayor" (click)="deckService.playRound(2)">
+            <i class="fa-solid fa-arrow-up"></i> Mayor
+        </button>
+    </div>
+}
+
+@if (gameState() === 'gameover') {
+    <div class="game-over-screen">
+        <div class="results-card">
+            <h2>¡Partida Terminada, {{ user()?.name }}!</h2>
+            
+            <div class="final-score">
+                <p>Tu puntaje final</p>
+                <h3>{{ score() }}</h3>
+            </div>
+
+            <hr class="divider">
+
+            <div class="leaderboard">
+                <h4>🏆 Top 3 Mejores Jugadores</h4>
+                <!-- Descarte (Izquierda) -->
+                @if (leaderboard()?.length == 0) {
+                    <p class="loading-text">Cargando puntajes...</p>
+                } @else {
+                    <ol class="top-list">
+                        @for (player of leaderboard(); track $index) {
+                            <li>
+                                <span class="player-name">{{ player.username }}</span>
+                                <span class="player-score">{{ player.score }} pts</span>
+                            </li>
+                        }
+                    </ol>
+                }
+                
+            </div>
+
+            <button class="btn-main-action" (click)="deckService.restartGame()">JUGAR DE NUEVO</button>
+        </div>
+    </div>
+}

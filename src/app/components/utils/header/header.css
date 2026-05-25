@@ -92,3 +92,23 @@
     cursor: pointer;
     font-weight: 600;
 }
+
+.btn-chat {
+    height: 20px;
+    width: 60px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* El botón (opcional, por si quieres que flote a la derecha) */
+.btn-toggle-chat {
+    top: 20px;
+    right: 20px;
+    z-index: 1001; /* Debe estar por encima del chat */
+    /* ... tus estilos de botones ... */
+}

@@ -1,0 +1,140 @@
+<div class="farkle-container">
+    
+    @if (gameState() == 'start') {
+        <div class="center-screen">
+            <h1 class="game-title">JUEGO DE DADOS</h1>
+            <button class="btn-main" (click)="farkleService.startGame()">EMPEZAR PARTIDA</button>
+        </div>
+    }
+
+    @if (gameState() == 'playing') {
+        
+        <div class="playing-layout">
+            
+            <aside class="rules-sidebar">
+                <h3 class="rules-title">Puntajes</h3>
+                <ul class="rules-list">
+                    <li><span class="dice-combo">[ 1 ]</span> <span class="rule-pts">100</span></li>
+                    <li><span class="dice-combo">[ 5 ]</span> <span class="rule-pts">50</span></li>
+                    <li class="rule-divider"></li>
+                    <li><span class="dice-combo">[ 1 ][ 1 ][ 1 ]</span> <span class="rule-pts">1000</span></li>
+                    <li><span class="dice-combo">[ 2 ][ 2 ][ 2 ]</span> <span class="rule-pts">200</span></li>
+                    <li><span class="dice-combo">[ 3 ][ 3 ][ 3 ]</span> <span class="rule-pts">300</span></li>
+                    <li><span class="dice-combo">[ 4 ][ 4 ][ 4 ]</span> <span class="rule-pts">400</span></li>
+                    <li><span class="dice-combo">[ 5 ][ 5 ][ 5 ]</span> <span class="rule-pts">500</span></li>
+                    <li><span class="dice-combo">[ 6 ][ 6 ][ 6 ]</span> <span class="rule-pts">600</span></li>
+                </ul>
+            </aside>
+
+            <div class="game-core">
+                
+                <header class="game-header">
+                    <div class="stat-box">
+                        <span class="stat-label">META</span>
+                        <span class="stat-value">{{maxScore}} pts</span>
+                    </div>
+                    <div class="stat-box highlight-box">
+                        <span class="stat-label">PUNTAJE TOTAL</span>
+                        <span class="stat-value">{{totalScore()}}</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">RONDAS</span>
+                        <span class="stat-value">{{rounds()}}</span>
+                    </div>
+                </header>
+
+                @if (keepPlaying() == false) {
+                    <div class="center-action">
+                        <button class="btn-main" (click)="farkleService.playRound()">JUGAR RONDA</button>
+                    </div>
+                }
+
+                @if (keepPlaying() == true) {
+                    <div class="board-layout">
+                        <section class="active-area">
+                            <h3 class="area-title">Mesa Actual</h3>
+                            <div class="dice-grid">
+                                @for (dice of dices(); track $index) {
+                                    <div class="dice-box"> {{dice.chosenValue}} </div>
+                                }
+                            </div>
+                        </section>
+
+                        <section class="used-area">
+                            <h3 class="area-title">Dados Guardados</h3>
+                            <div class="dice-grid mini-grid">
+                                @for (dice of usedDices(); track $index) {
+                                    <div class="dice-box used-dice"> {{dice.chosenValue}} </div>
+                                }
+                            </div>
+                            <div class="round-score-display">
+                                <span>Puntos en juego:</span>
+                                <strong>{{roundScore()}}</strong>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="action-panel">
+                        @if (totalScore() < minScore) {
+                            <div class="alert-box warning">
+                                Debes alcanzar al menos <strong>{{minScore}} puntos</strong> para guardar tu progreso inicial.
+                            </div>
+                        }
+
+                        <div class="buttons-row">
+                            @if (lost() == false) {
+                                <button class="btn-action btn-roll" (click)="farkleService.playRoundAgain()">
+                                    <i class="fa-solid fa-dice"></i> TIRAR DE NUEVO
+                                </button>
+
+                                @if (totalScore() >= minScore || roundScore() >= minScore) {
+                                    <button class="btn-action btn-stop" (click)="farkleService.stopRound()">
+                                        <i class="fa-solid fa-hand"></i> TERMINAR RONDA
+                                    </button>
+                                }
+                            } 
+                            @else {
+                                <button class="btn-action btn-lose" (click)="farkleService.stopRound()">
+                                    <i class="fa-solid fa-skull"></i> ¡PERDISTE LOS PUNTOS!
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    @if (gameState() == 'gameover') {
+        <div class="center-screen">
+            <div class="game-over-card">
+                <h1 class="win-text">¡VICTORIA!</h1>
+                <p class="result-text">Alcanzaste los <strong>{{maxScore}} puntos</strong></p>
+                <p class="result-text">en tan solo <strong>{{rounds()}} tiradas</strong>.</p>
+
+                <hr class="divider">
+
+                <div class="leaderboard">
+                    <h4>🏆 Top 3 Mejores Partidas</h4>
+                    
+                    @if (leaderboard()?.length === 0) {
+                        <p class="loading-text">Cargando puntajes...</p>
+                    } @else {
+                        <ol class="top-list">
+                            @for (player of leaderboard(); track $index) {
+                                <li>
+                                    <span class="player-name">{{ player.username }}</span>
+                                    <span> - </span>
+                                    <span class="player-score">{{ player.score }} rondas</span> 
+                                </li>
+                            }
+                        </ol>
+                    }
+                </div>
+
+                <button class="btn-main mt-20" (click)="farkleService.restartGame()">JUGAR DE NUEVO</button>
+            </div>
+        </div>
+    }
+
+</div>

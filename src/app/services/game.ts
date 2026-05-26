@@ -27,7 +27,6 @@ export class GameService {
         else {
             if (data) {
                 const leaderboard = data.map((row: any) => ({
-                    // Extraemos el nombre del objeto anidado 'users'
                     username: row.users?.name || 'Jugador Desconocido', 
                     score: row.score
                 }));
@@ -37,4 +36,30 @@ export class GameService {
             return;
         }
     }
-} 
+
+    async getHighScoreUser(userId: string, game: number, amount = 3, ascending: boolean = false) {
+        const { data, error } = await this.client
+            .from('results')
+            .select('users(name), score')
+            .eq('game_id', game)
+            .eq('user_id', userId)
+            .order('score', { ascending: ascending })
+            .limit(amount);
+
+            if (error) {
+            console.error(error.message);
+            return;
+            }
+            else {
+                if (data) {
+                    const leaderboard = data.map((row: any) => ({
+                        username: row.users?.name || 'Jugador Desconocido', 
+                        score: row.score
+                    }));
+
+                    return leaderboard;
+                }
+                return;
+            }
+    }
+}

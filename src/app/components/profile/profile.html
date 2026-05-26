@@ -1,0 +1,82 @@
+<div class="profile-container">
+    
+    <header class="profile-header">
+        <div class="welcome-text">
+            @if (user()?.sex == 'F') {
+                <h1>¡Eres una gran jugadora, <span class="highlight">{{user()?.name}}</span>!</h1>
+            }
+            @else if ( user()?.sex == 'M' ) {
+                <h1>¡Eres un gran jugador, <span class="highlight">{{user()?.name}}</span>!</h1>
+            }
+            @else {
+                <h1>¡Wow! ¡Qué nivel, <span class="highlight">{{user()?.name}}</span>!</h1>
+            }
+        </div>
+        <p class="intro-text">Aquí podrás encontrar tanto tus estadísticas como las mejores puntuaciones globales de nuestra plataforma. ¡Esperamos que esta información te ayude a seguir mejorando!</p>
+    </header>
+
+    <hr class="section-divider">
+
+    <section class="user-stats-section">
+        <h2 class="section-title">Tus Estadísticas Personales</h2>
+        
+        <div class="wip-banner">
+            <i class="fa-solid fa-person-digging"></i>
+            <div>
+                <h3>Sección en Construcción (WIP)</h3>
+                <p>Estamos trabajando para traer tu historial detallado. ¡Pronto verás tus récords aquí!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="global-stats-section">
+        <h2 class="section-title">Salón de la Fama Global</h2>
+        <p class="subtitle-text">Los mejores jugadores de cada disciplina.</p>
+
+        @if (leaderboards().length === 0) {
+            <div class="loading-state">
+                <p class="loading-text">Cargando clasificaciones globales...</p>
+            </div>
+        } @else {
+            <div class="leaderboards-grid">
+                
+                @for (gameData of leaderboards(); track gameData.game) {
+                    
+                    <div class="leaderboard-card">
+                        <div class="card-header">
+                            <h3>{{ gameData.gameName }}</h3>
+                        </div>
+                        
+                        <div class="card-body">
+                            @if (gameData.leaderboard.length === 0) {
+                                <p class="empty-board">Aún no hay puntajes registrados.</p>
+                            } @else {
+                                <ol class="top-list">
+                                    @for (player of gameData.leaderboard; track $index) {
+                                        <li>
+                                            <span class="player-name">{{ player.username }}</span>
+                                            
+                                            <span class="player-score">
+                                                
+                                                @if (gameData.game === 3) {
+                                                    {{ formatTime(player.score) }}
+                                                } 
+                                                @else {
+                                                    {{ player.score }} <span class="score-unit">pts</span>
+                                                }
+                                                
+                                            </span>
+                                        </li>
+                                    }
+                                </ol>
+                            }
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        }
+    </section>
+
+</div>

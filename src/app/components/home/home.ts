@@ -38,7 +38,6 @@ export class Home {
 
     playGame(route: string) {
         this.router.navigate([route]);
-        console.log('Juega!')
     }
 
     toggleChat() {

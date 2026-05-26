@@ -12,7 +12,42 @@ export class HangedService {
     ]);
 
     private gameService = inject(GameService);
-    private wordList = ['CANGURO','LINCE', 'MONARQUIA', 'OLA', 'VIRREINATO'];
+    private wordList = [  "MURCIELAGO",
+        "COMPUTADORA",
+        "ASTRONAUTA",
+        "BIBLIOTECA",
+        "ELECTRICIDAD",
+        "HELICOPTERO",
+        "AVENTURERO",
+        "CASCADA",
+        "LABERINTO",
+        "LINCE",
+        "ESPEJISMO",
+        "MONTAÑA",
+        "UNIVERSO",
+        "MURALLA",
+        "TELESCOPIO",
+        "MARIPOSA",
+        "CARRETERA",
+        "PIRAMIDE",
+        "VOLCAN",
+        "ORNITORRINCO",
+        "BICICLETA",
+        "FERROCARRIL",
+        "DESTORNILLADOR",
+        "PARAGUAS",
+        "CAMALEON",
+        "METEORITO",
+        "HIPOPOTAMO",
+        "ALFOMBRA",
+        "TERMOMETRO",
+        "COCODRILO",
+        "AGONIA",
+        "ETCETERA",
+        "RISUEÑO",
+        "HURACAN",
+        "MIRIAPODO"];
+    
     private startTime = 0;
     private endTime = 0;
     

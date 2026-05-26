@@ -12,7 +12,6 @@ export class DeckService {
     private gameService = inject(GameService);
 
     gameState = signal<'start' | 'playing' | 'gameover'>('start');
-    playing = signal<boolean>(false);
     deck = signal<Card[]>([]);
     discardedCards = signal<Card[]>([]);
     currentCard = signal<Card|undefined>(undefined);
@@ -144,7 +143,6 @@ export class DeckService {
     }
 
     startGame() {
-        this.playing.set(true);
         this.gameState.set("playing");
         this.loadDeck();
         this.shuffleDeck();
